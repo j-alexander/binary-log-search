@@ -20,11 +20,15 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Host</Label>
-        <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Padding="1"
+        <ComboBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"
+                  ItemsSource="{Binding Model.LogStores}"
+                  SelectedItem="{Binding Model.SelectedLogStore, UpdateSourceTrigger=PropertyChanged}"
+                  DisplayMemberPath="name"/>
+        <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Padding="2"
                  Text="{Binding Model.Host, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Channel</Label>
-        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Padding="1"
+        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Content="{Binding Model.SelectedLogStore.channel}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Padding="2"
                  Text="{Binding Model.Channel, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Timestamp</Label>

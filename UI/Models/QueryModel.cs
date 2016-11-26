@@ -14,6 +14,20 @@ namespace UI.Models {
 
     public class QueryModel : DependencyObject {
 
+        public static readonly DependencyProperty LogStoresProperty =
+            DependencyProperty.Register("LogStores", typeof(LogStore[]), typeof(QueryModel));
+        public LogStore[] LogStores {
+            get { return (LogStore[])GetValue(LogStoresProperty); }
+            set { SetValue(LogStoresProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedLogStoreProperty =
+            DependencyProperty.Register("SelectedLogStore", typeof(LogStore), typeof(QueryModel));
+        public LogStore SelectedLogStore {
+            get { return (LogStore)GetValue(SelectedLogStoreProperty); }
+            set { SetValue(SelectedLogStoreProperty, value); }
+        }
+
         public static readonly DependencyProperty HostProperty =
             DependencyProperty.Register("Host", typeof(string), typeof(QueryModel));
         public string Host {
@@ -78,6 +92,10 @@ namespace UI.Models {
         
         public QueryModel() {
             SetValue(SearchesProperty, new ObservableCollection<SearchModel>());
+
+            LogStores = Algorithm.Connections.all;
+            SelectedLogStore = Algorithm.Connections.kafka;
+
             if (Debugger.IsAttached) {
                 Host = "tcp://guardians-kafka-cluster.qa.jet.com:9092";
                 Channel = "nova-retailskus-profx";
@@ -92,6 +110,7 @@ namespace UI.Models {
                 IsConnected = false;
                 Status = "Connecting...";
 
+                var store = SelectedLogStore;
                 var host = Host;
                 var channel = Channel;
                 var startAt = StartAt;
@@ -101,7 +120,7 @@ namespace UI.Models {
                 var worker = new BackgroundWorker();
                 worker.DoWork += (sender, e) => {
                     var codec = Codec.create(startAt, targetPath);
-                    var connections = Kafka.connect(host, channel, codec);
+                    var connections = store.connect(host, channel, codec);
                     var searches = connections.Select(x => new BinaryLogSearch(x)).ToArray();
                     e.Result = searches;
                 };
