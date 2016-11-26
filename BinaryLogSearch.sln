@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{663AA6A6-C0B9-4FE9-B9ED-623DA4AB6956}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Algorithm", "Algorithm\Algorithm.fsproj", "{39BD2D0F-DB6A-422E-859D-7066866D25E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{663AA6A6-C0B9-4FE9-B9ED-623DA4AB6956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{663AA6A6-C0B9-4FE9-B9ED-623DA4AB6956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{663AA6A6-C0B9-4FE9-B9ED-623DA4AB6956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{663AA6A6-C0B9-4FE9-B9ED-623DA4AB6956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39BD2D0F-DB6A-422E-859D-7066866D25E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39BD2D0F-DB6A-422E-859D-7066866D25E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39BD2D0F-DB6A-422E-859D-7066866D25E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39BD2D0F-DB6A-422E-859D-7066866D25E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
