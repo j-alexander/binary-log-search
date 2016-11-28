@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="Binary Log Search" Language="1033" Version="1.0.0.0" Manufacturer="github.com/j-alexander" UpgradeCode="88b782ef-1f40-40e1-9fad-cfe5e7e1855a">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." AllowSameVersionUpgrades="no" />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="Binary Log Search" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortcut"/>
+		</Feature>
+  </Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="BinaryLogSearch" />
+			</Directory>
+      <Directory Id="ProgramMenuFolder" Name="Programs"/>
+		</Directory>
+	</Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ProgramMenuFolder">
+      <Component Id="ApplicationShortcut"
+                 Guid="{4c484c51-729d-42b6-95fe-2127ae1ea1c8}">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="Binary Log Search"
+                  Description="Use Binary Search w/ JSON-encoded Persistent Linear Data Stores"
+                  Target="[INSTALLFOLDER]UI.exe"
+                  WorkingDirectory="INSTALLFOLDER"/>
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\BinaryLogSearch" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      
+        <Component Id="CMP_UI"
+                   Guid="{638fd237-52bb-40a3-9f9c-36bbf51c85a1}">
+          <File Id="UI" Source="..\UI\bin\Release\UI.exe"/>
+        </Component>
+      
+        <Component Id="CMP_UI_CFG"
+                   Guid="{645b3f97-bbf8-4ef3-b9aa-69be8705dd7d}">
+          <File Id="UI_config" Source="..\UI\bin\Release\UI.exe.config"/>
+        </Component>
+      
+        <Component Id="CMP_FSharp.Core"
+                   Guid="{36082491-475b-427b-bb07-91ce3ffb9e56}">
+          <File Id="FSharp.Core" Source="..\UI\bin\Release\FSharp.Core.dll"/>
+        </Component>
+      
+        <Component Id="CMP_Algorithm"
+                   Guid="{73a39d11-4909-433b-80a2-cb5ec4d797ab}">
+          <File Id="Algorithm" Source="..\UI\bin\Release\Algorithm.dll"/>
+        </Component>
+      
+        <Component Id="CMP_EventStore.ClientAPI" 
+                   Guid="{1a8d51a4-66db-4919-aafb-804ebe2ddf19}">
+          <File Id="EventStore.ClientAPI" Source="..\UI\bin\Release\EventStore.ClientAPI.dll"/>
+        </Component>
+      
+        <Component Id="CMP_FSharp.Data"
+                   Guid="{d36d3d0f-6e12-4fcc-bd53-8cdf1bbe634b}">
+          <File Id="FSharp.Data" Source="..\UI\bin\Release\FSharp.Data.dll"/>
+        </Component>
+      
+        <Component Id="CMP_kafka_net"
+                   Guid="{503e6a99-b824-4b14-ba67-d3fce9ef9f11}">
+          <File Id="kafka_net" Source="..\UI\bin\Release\kafka-net.dll"/>
+        </Component>
+      
+        <Component Id="CMP_Nata.Core"
+                   Guid="{7cbd16aa-5ea6-447a-a4d0-85d97d2bbd7d}">
+          <File Id="Nata.Core" Source="..\UI\bin\Release\Nata.Core.dll"/>
+        </Component>
+      
+        <Component Id="CMP_Nata.Fun.JsonPath"
+                   Guid="{2fbfb7a7-b7b5-4841-bc97-c62d251b813b}">
+          <File Id="Nata.Fun.JsonPath" Source="..\UI\bin\Release\Nata.Fun.JsonPath.dll"/>
+        </Component>
+      
+        <Component Id="CMP_Nata.IO"
+                   Guid="{47b1dc42-3831-4d4f-9830-5cdc71db8955}">
+          <File Id="Nata.IO" Source="..\UI\bin\Release\Nata.IO.dll"/>
+        </Component>
+      
+        <Component Id="CMP_Nata.IO.EventStore"
+                   Guid="{4f7a275a-070a-4259-9fda-1bc75225e25b}">
+          <File Id="Nata.IO.EventStore" Source="..\UI\bin\Release\Nata.IO.EventStore.dll"/>
+        </Component>
+      
+        <Component Id="CMP_Nata.IO.Kafka"
+                   Guid="{c09ed05b-16ee-4b9d-8d99-05374dab17a6}">
+          <File Id="Nata.IO.Kafka" Source="..\UI\bin\Release\Nata.IO.Kafka.dll"/>
+        </Component>
+      
+        <Component Id="CMP_Newtonsoft.Json"
+                   Guid="{766cb024-f039-4ec2-9860-ab8108c57e14}">
+          <File Id="Newtonsoft.Json" Source="..\UI\bin\Release\Newtonsoft.Json.dll"/>
+        </Component>
+      
+        <Component Id="CMP_NLog"
+                   Guid="{17bb388f-0daf-4e78-851e-685e926621aa}">
+          <File Id="NLog" Source="..\UI\bin\Release\NLog.dll"/>
+        </Component>
+      
+        <Component Id="CMP_NLog.FSharp"
+                   Guid="{4e769456-1f10-43b5-9d61-35ec25fd928d}">
+          <File Id="NLog.FSharp" Source="..\UI\bin\Release\NLog.FSharp.dll"/>
+        </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
