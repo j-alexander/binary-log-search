@@ -95,12 +95,12 @@ namespace UI.Models {
 
             LogStores = Algorithm.Connections.all;
             SelectedLogStore = Algorithm.Connections.kafka;
+            Target = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 
             if (Debugger.IsAttached) {
                 Host = "tcp://guardians-kafka-cluster.qa.jet.com:9092";
                 Channel = "nova-retailskus-profx";
                 StartAt = 33;
-                Target = new DateTime(2016,11,20);
             }
         }
 

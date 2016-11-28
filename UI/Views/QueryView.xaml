@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI.Views"
-             xmlns:extended="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+             xmlns:validation="clr-namespace:UI.Validation"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="500">
     <Grid>
@@ -33,10 +33,15 @@
 
         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Timestamp</Label>
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
-            <extended:DateTimePicker TextAlignment="Left" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                     ShowButtonSpinner="True" ShowDropDownButton="True" ButtonSpinnerLocation="Left"
-                                     Format="Custom" FormatString="yyyy-MM-dd HH:mm:ss" TimeFormat="Custom" TimeFormatString="HH:mm:ss.fff"
-                                     Text="{Binding Model.Target, UpdateSourceTrigger=PropertyChanged, StringFormat=yyyy-MM-dd HH:mm:ss}"/>
+            <TextBox Width="125" TextAlignment="Left" VerticalAlignment="Center" Padding="1">
+                <TextBox.Text>
+                    <Binding Path="Model.Target" UpdateSourceTrigger="PropertyChanged" StringFormat="yyyy-MM-dd HH:mm:ss">
+                        <Binding.ValidationRules>
+                            <validation:DateTimeValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBox Width="100" VerticalAlignment="Center" Padding="1"
                      Text="{Binding Model.TargetPath, UpdateSourceTrigger=PropertyChanged}"/>
             <Label VerticalAlignment="Center">Start At Character:</Label>
