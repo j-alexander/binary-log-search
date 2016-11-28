@@ -198,6 +198,13 @@ namespace UI.Models {
                 worker.RunWorkerCompleted += (sender, e) => {
                     IsCancelling = false;
                     IsExecuting = false;
+                    if (e.Error != null) {
+                        if (e.Error.Message.Contains("Invalid JSON")) {
+                            Status = String.Format("Invalid JSON");
+                        } else {
+                            Status = String.Format("Error: {0}", e.Error.Message);
+                        }
+                    }
                     CommandManager.InvalidateRequerySuggested();
                 };
                 worker.RunWorkerAsync();
