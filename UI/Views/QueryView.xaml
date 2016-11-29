@@ -33,7 +33,7 @@
 
         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Timestamp</Label>
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
-            <TextBox Width="125" TextAlignment="Left" VerticalAlignment="Center" Padding="1">
+            <TextBox MinWidth="125" TextAlignment="Left" VerticalAlignment="Center" Padding="1">
                 <TextBox.Text>
                     <Binding Path="Model.Target" UpdateSourceTrigger="PropertyChanged" StringFormat="yyyy-MM-dd HH:mm:ss">
                         <Binding.ValidationRules>
@@ -42,10 +42,10 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Width="100" VerticalAlignment="Center" Padding="1"
+            <TextBox MinWidth="100" VerticalAlignment="Center" Padding="1"
                      Text="{Binding Model.TargetPath, UpdateSourceTrigger=PropertyChanged}"/>
             <Label VerticalAlignment="Center">Start At Character:</Label>
-            <TextBox Width="25" VerticalAlignment="Center" Padding="1"
+            <TextBox MinWidth="25" VerticalAlignment="Center" Padding="1"
                      Text="{Binding Model.StartAt, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 

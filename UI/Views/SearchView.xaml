@@ -47,12 +47,12 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        <GridViewColumn Header="Range" Width="75"
+                                        DisplayMemberBinding="{Binding Range}"/>
                         <GridViewColumn Header="From" Width="75"
                                         DisplayMemberBinding="{Binding LowerBound}"/>
                         <GridViewColumn Header="To" Width="75"
                                         DisplayMemberBinding="{Binding UpperBound}"/>
-                        <GridViewColumn Header="Range" Width="75"
-                                        DisplayMemberBinding="{Binding Range}"/>
                         <GridViewColumn Header="Query" Width="75"
                                         DisplayMemberBinding="{Binding QueryPosition}"/>
                         <GridViewColumn Header="Current" Width="75"
