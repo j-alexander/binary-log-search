@@ -16,13 +16,6 @@ namespace UI.Models {
             get { return (ObservableCollection<SearchModel>)GetValue(SearchesProperty); }
         }
 
-        public static readonly DependencyProperty SelectedSearchProperty =
-            DependencyProperty.Register("SelectedSearch", typeof(SearchModel), typeof(SearchesModel));
-        public SearchModel SelectedSearch {
-            get { return (SearchModel)GetValue(SelectedSearchProperty); }
-            set { SetValue(SelectedSearchProperty, value); }
-        }
-
         public SearchesModel(ObservableCollection<SearchModel> searches) {
             SetValue(SearchesProperty, searches);
         }

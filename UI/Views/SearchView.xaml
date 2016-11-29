@@ -14,9 +14,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" Grid.Column="0" SelectionMode="Single"
-                  ItemsSource="{Binding Model.Searches}"
-                  SelectedItem="{Binding Model.SelectedSearch}">
+        <ListView Grid.Row="0" Grid.Column="0" SelectionMode="Extended"
+                  Name="Searches"
+                  ItemsSource="{Binding Model.Searches}">
             <ListView.Resources>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -65,9 +65,9 @@
         </ListView>
 
         <DockPanel Grid.Row="1" Grid.Column="0">
-            <Button DockPanel.Dock="Left" Command="{Binding Run}" Padding="5 0 5 0" >▶ Start</Button>
+            <Button DockPanel.Dock="Left" Command="{Binding Run}" Padding="5 0 5 0" CommandParameter="{Binding ElementName=Searches, Path=SelectedItems}">▶ Start</Button>
             <Button DockPanel.Dock="Left" Command="{Binding RunAll}" Padding="5 0 5 0">All</Button>
-            <Button DockPanel.Dock="Left" Command="{Binding Stop}" Padding="5 0 5 0" >◼ Stop</Button>
+            <Button DockPanel.Dock="Left" Command="{Binding Stop}" Padding="5 0 5 0" CommandParameter="{Binding ElementName=Searches, Path=SelectedItems}">◼ Stop</Button>
             <Button DockPanel.Dock="Left" Command="{Binding StopAll}" Padding="5 0 5 0">All</Button>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
                 <Label Foreground="LightGray" DockPanel.Dock="Right">

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,29 +25,35 @@ namespace UI.ViewModels {
         public SearchViewModel(ObservableCollection<SearchModel> models) {
             Model = new SearchesModel(models);
 
-            Run = new RelayCommand(
-                x => Model?.SelectedSearch?.CanExecute ?? false,
-                x => Model.SelectedSearch.Execute());
+            Func<Func<object,IEnumerable<SearchModel>>,
+                 Func<IEnumerable<SearchModel>,bool>,
+                 Action<IEnumerable<SearchModel>>,
+                 RelayCommand> relaySelected = (select, canExecute, execute) =>
+                    new RelayCommand(
+                        x => canExecute(select(x)),
+                        x => execute(select(x)));
 
-            Stop = new RelayCommand(
-                x => Model?.SelectedSearch?.CanCancel ?? false,
-                x => Model.SelectedSearch.Cancel());
+            Func<Func<object, IEnumerable<SearchModel>>, RelayCommand> run = (select) =>
+                 relaySelected(select,
+                     x => x?.Any(search => search.CanExecute) ?? false,
+                     x => {
+                         foreach (var search in x.Where(search => search.CanExecute))
+                             search.Execute();
+                     });
 
-            RunAll = new RelayCommand(
-                x => Model?.Searches?.Any(search => search.CanExecute) ?? false,
-                x => {
-                    foreach (var search in Model.Searches.Where(search => search.CanExecute)) {
-                        search.Execute();
-                    }
-                });
+            Func<Func<object,IEnumerable<SearchModel>>, RelayCommand> stop = (select) =>
+                 relaySelected(select,
+                     x => x?.Any(search => search.CanCancel) ?? false,
+                     x => {
+                         foreach (var search in x.Where(search => search.CanCancel))
+                             search.Cancel();
+                     });
+            
+            Run = run(x => (x as IList)?.Cast<SearchModel>());
+            RunAll = run(x => Model?.Searches);
 
-            StopAll = new RelayCommand(
-                x => Model?.Searches?.Any(search => search.CanCancel) ?? false,
-                x => {
-                    foreach (var search in Model.Searches.Where(search => search.CanCancel)) {
-                        search.Cancel();
-                    }
-                });
+            Stop = stop(x => (x as IList)?.Cast<SearchModel>());
+            StopAll = stop(x => Model?.Searches);
         }
     }
 }
