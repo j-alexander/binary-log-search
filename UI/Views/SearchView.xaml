@@ -69,14 +69,7 @@
             <Button DockPanel.Dock="Left" Command="{Binding RunAll}" Padding="5 0 5 0">All</Button>
             <Button DockPanel.Dock="Left" Command="{Binding Stop}" Padding="5 0 5 0" CommandParameter="{Binding ElementName=Searches, Path=SelectedItems}">◼ Stop</Button>
             <Button DockPanel.Dock="Left" Command="{Binding StopAll}" Padding="5 0 5 0">All</Button>
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
-                <Label Foreground="LightGray" DockPanel.Dock="Right">
-                    <Hyperlink NavigateUri="https://github.com/j-alexander/binary-log-search"
-                               RequestNavigate="Hyperlink_RequestNavigate">
-                        https://github.com/j-alexander/binary-log-search
-                    </Hyperlink>
-                </Label>
-            </StackPanel>
+            <local:VersionView />
         </DockPanel>
     </Grid>
 </UserControl>

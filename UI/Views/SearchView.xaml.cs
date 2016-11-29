@@ -20,9 +20,5 @@ namespace UI.Views {
         public SearchView() {
             InitializeComponent();
         }
-
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) {
-            Process.Start(e.Uri.ToString());
-        }
     }
 }
