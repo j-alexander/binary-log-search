@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-
-using Microsoft.FSharp.Control;
+﻿using Algorithm;
 using Microsoft.FSharp.Core;
-
-using Algorithm;
+using System;
+using System.ComponentModel;
+using System.Threading;
+using System.Windows;
 using System.Windows.Input;
 
 namespace UI.Models {
