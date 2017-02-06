@@ -17,6 +17,9 @@
         <ListView Grid.Row="0" Grid.Column="0" SelectionMode="Extended"
                   Name="Searches"
                   ItemsSource="{Binding Model.Searches}">
+            <ListView.InputBindings>
+                <KeyBinding Key="C" Modifiers="Ctrl" Command="{Binding Copy}" CommandParameter="{Binding ElementName=Searches, Path=SelectedItems}" />
+            </ListView.InputBindings>
             <ListView.Resources>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
