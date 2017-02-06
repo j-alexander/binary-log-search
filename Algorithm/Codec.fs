@@ -9,8 +9,7 @@ module Codec =
 
     let create (startAt, path) : Codec<string,DateTime option> =
         String.tryStartAt startAt
-        >> Option.get
-        >> JsonValue.Parse
-        >> JsonValue.tryFind path
+        >> Option.bind (fun x -> try x |> JsonValue.Parse |> Some with _ -> None)
+        >> Option.bind (JsonValue.tryFind path)
         >> Option.map (JsonValue.toType >> DateTime.toLocal), Codec.NotImplemented
         
