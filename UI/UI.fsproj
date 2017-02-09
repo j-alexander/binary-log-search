@@ -57,6 +57,18 @@
     <None Include="App.config" />
     <Content Include="packages.config" />
     <Compile Include="AssemblyInfo.fs" />
+    <Resource Include="Views\VersionView.xaml" />
+    <Resource Include="Views\QueryView.xaml" />
+    <Resource Include="Views\SearchView.xaml" />
+    <Resource Include="Views\MainWindow.xaml" />
+    <Compile Include="Views\Views.fs" />
+    <Compile Include="Validation\DateTimeValidationRule.fs" />
+    <Compile Include="Converters\AbstractBooleanConverter.fs" />
+    <Compile Include="Converters\BooleanConverter.fs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.fs" />
+    <Compile Include="Converters\ListViewItemColorConverter.fs" />
+    <Compile Include="Converters\SingleLineTextConverter.fs" />
+    <Resource Include="App.xaml" />
     <Compile Include="App.fs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,23 +92,6 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UI.Converters\UI.Converters.fsproj">
-      <Name>UI.Converters</Name>
-      <Project>{f3757caa-58e4-4039-8040-f77ac0563cfd}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\UI.Validation\UI.Validation.fsproj">
-      <Name>UI.Validation</Name>
-      <Project>{5a11a91f-d103-42f8-a7a5-2bc16ecd9b3f}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\UI.Views\UI.Views.fsproj">
-      <Name>UI.Views</Name>
-      <Project>{b8b2da09-31ee-42d9-b7b4-2f2ad08e1f16}</Project>
-      <Private>True</Private>
-    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

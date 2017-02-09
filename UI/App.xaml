@@ -1,7 +1,7 @@
 ﻿<Application
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:UI.Converters;assembly=UI.Converters">
+    xmlns:converters="clr-namespace:UI.Converters;assembly=UI">
     <Application.Resources>
         <converters:BooleanConverter x:Key="Negate" True="False" False="True"/>
         <converters:BooleanToVisibilityConverter x:Key="Visibility"/>

@@ -3,6 +3,7 @@
 open System
 open FsXaml
 
+type App = XAML<"App.xaml">
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module App =
@@ -10,9 +11,9 @@ module App =
     [<STAThread>]
     [<EntryPoint>]
     let main argv =
-        let app = UI.Views.App()
+        let app = App()
         app.Startup.Add(fun _ ->
-            let window = new UI.Views.MainWindow()
+            let window = new Views.MainWindow()
             app.MainWindow <- window
             app.MainWindow.Show())
         app.Run()
