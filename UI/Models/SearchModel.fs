@@ -15,7 +15,7 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
     let state : Ref<SearchState> = ref { SearchState.empty with Target=target }
     
     static let targetResult =
-        DependencyProperty.Register("TargetResult", typeof<DateTime>, typeof<SearchModel>)
+        DependencyProperty.Register("TargetResult", typeof<Nullable<DateTime>>, typeof<SearchModel>)
     static let lowerBound =
         DependencyProperty.Register("LowerBound", typeof<int64>, typeof<SearchModel>)
     static let upperBound =
@@ -42,8 +42,8 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
     member public x.Target = target
 
     member public x.TargetResult
-        with get() = x.GetValue(targetResult) :?> DateTime
-        and set(value:DateTime) = x.SetValue(targetResult, value)
+        with get() = x.GetValue(targetResult) :?> Nullable<DateTime>
+        and set(value:Nullable<DateTime>) = x.SetValue(targetResult, value)
 
     member public x.LowerBound
         with get() = x.GetValue(lowerBound) :?> int64
@@ -156,7 +156,7 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
                     | NotFound ->
                         "NotFound"
                     | Found (at, index) ->
-                        x.TargetResult <- at
+                        x.TargetResult <- Nullable(at)
                         x.UpperBound <- index
                         x.LowerBound <- index
                         x.QueryPosition <- index
