@@ -32,7 +32,7 @@
             </Label.Triggers>
         </Label>
         <Label Foreground="LightGray"  VerticalAlignment="Center">
-            <Hyperlink NavigateUri="{Binding Model.BrowseUrl}"> <!--RequestNavigate="HyperlinkRequestNavigate">-->
+            <Hyperlink NavigateUri="{Binding Model.BrowseUrl}" Command="{Binding Path=Browse}">
                 https://github.com/j-alexander/binary-log-search
             </Hyperlink>
         </Label>

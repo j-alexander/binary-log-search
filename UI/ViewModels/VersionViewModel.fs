@@ -1,6 +1,8 @@
 ﻿namespace UI.ViewModels
 
 open System.Diagnostics
+
+open UI.Commands
 open UI.Models
 
 type VersionViewModel() =
@@ -12,5 +14,10 @@ type VersionViewModel() =
         model.Check()
         model
 
+    let browseCommand =
+        new RelayCommand(
+            (fun _ -> true),
+            (fun _ -> model.BrowseUrl |> Process.Start |> ignore))
+
     member public x.Model = model
-    member public x.OnBrowseRequest() = model.BrowseUrl |> Process.Start |> ignore
+    member public x.Browse = browseCommand
