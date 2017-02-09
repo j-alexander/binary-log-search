@@ -5,15 +5,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>39bd2d0f-db6a-422e-859d-7066866d25e4</ProjectGuid>
+    <ProjectGuid>f3757caa-58e4-4039-8040-f77ac0563cfd</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Algorithm</RootNamespace>
-    <AssemblyName>Algorithm</AssemblyName>
+    <RootNamespace>UI.Converters</RootNamespace>
+    <AssemblyName>UI.Converters</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Name>Algorithm</Name>
-    <TargetFrameworkProfile />
+    <Name>UI.Converters</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,7 +22,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\Algorithm.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\UI.Converters.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,60 +31,8 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\Algorithm.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\UI.Converters.XML</DocumentationFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="EventStore.ClientAPI">
-      <HintPath>..\Libraries\EventStore.ClientAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="FSharp.Data">
-      <HintPath>..\Libraries\FSharp.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="FSharp.Data.DesignTime">
-      <HintPath>..\Libraries\FSharp.Data.DesignTime.dll</HintPath>
-    </Reference>
-    <Reference Include="kafka-net">
-      <HintPath>..\Libraries\kafka-net.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorlib" />
-    <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Nata.Core">
-      <HintPath>..\Libraries\Nata.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Nata.Fun.JsonPath">
-      <HintPath>..\Libraries\Nata.Fun.JsonPath.dll</HintPath>
-    </Reference>
-    <Reference Include="Nata.IO">
-      <HintPath>..\Libraries\Nata.IO.dll</HintPath>
-    </Reference>
-    <Reference Include="Nata.IO.EventStore">
-      <HintPath>..\Libraries\Nata.IO.EventStore.dll</HintPath>
-    </Reference>
-    <Reference Include="Nata.IO.Kafka">
-      <HintPath>..\Libraries\Nata.IO.Kafka.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Libraries\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\Libraries\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.FSharp">
-      <HintPath>..\Libraries\NLog.FSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Codec.fs" />
-    <Compile Include="Connection.fs" />
-    <Compile Include="SearchState.fs" />
-    <Compile Include="BinaryLogSearch.fs" />
-  </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>
@@ -102,6 +49,37 @@
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Content Include="packages.config" />
+    <Compile Include="AbstractBooleanConverter.fs" />
+    <Compile Include="BooleanConverter.fs" />
+    <Compile Include="BooleanToVisibilityConverter.fs" />
+    <Compile Include="ListViewItemColorConverter.fs" />
+    <Compile Include="SingleLineTextConverter.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FsXaml.Wpf">
+      <HintPath>..\packages\FsXaml.Wpf.3.1.2\lib\net45\FsXaml.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FsXaml.Wpf.TypeProvider">
+      <HintPath>..\packages\FsXaml.Wpf.3.1.2\lib\net45\FsXaml.Wpf.TypeProvider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

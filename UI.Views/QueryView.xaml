@@ -1,0 +1,51 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:local="clr-namespace:UI.Views;assembly=UI.Views"
+             xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
+             xmlns:validation="clr-namespace:UI.Validation;assembly=UI.Validation">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Host</Label>
+        <ComboBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"
+                  ItemsSource="{Binding Model.LogStores}"
+                  SelectedItem="{Binding Model.SelectedLogStore, UpdateSourceTrigger=PropertyChanged}"
+                  DisplayMemberPath="name"/>
+        <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Padding="2"
+                 Text="{Binding Model.Host, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Content="{Binding Model.SelectedLogStore.channel}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Padding="2"
+                 Text="{Binding Model.Channel, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Timestamp</Label>
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+            <TextBox MinWidth="125" TextAlignment="Left" VerticalAlignment="Center" Padding="1">
+                <TextBox.Text>
+                    <Binding Path="Model.Target" UpdateSourceTrigger="PropertyChanged" StringFormat="yyyy-MM-dd HH:mm:ss">
+                        <Binding.ValidationRules>
+                            <validation:DateTimeValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox MinWidth="100" VerticalAlignment="Center" Padding="1"
+                     Text="{Binding Model.TargetPath, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label VerticalAlignment="Center">Start At Character:</Label>
+            <TextBox MinWidth="25" VerticalAlignment="Center" Padding="1"
+                     Text="{Binding Model.StartAt, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <Button Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" Margin="0 0 5 0"
+                Command="{Binding Connect}">Query</Button>
+        <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" Margin="0 0 0 5" Text="{Binding Model.Status}"/>
+    </Grid>
+</UserControl>

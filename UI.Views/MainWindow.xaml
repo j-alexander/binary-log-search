@@ -1,0 +1,11 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:UI.Views;assembly=UI.Views"
+        xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
+        Title="Binary Log Search" Height="400" Width="825">
+    <DockPanel LastChildFill="True" Margin="10">
+        <local:QueryView DockPanel.Dock="Top" Height="110" />
+        <local:SearchView />
+    </DockPanel>
+</Window>
+

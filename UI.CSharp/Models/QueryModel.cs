@@ -96,8 +96,9 @@ namespace UI.Models {
 
             if (Debugger.IsAttached) {
                 Host = "tcp://guardians-kafka-cluster.qa.jet.com:9092";
-                Channel = "nova-retailskus-profx";
-                StartAt = 33;
+                Channel = "nova-retailskus-profx2";
+                TargetPath = "$.retail_sku_product_data_updated.timestamp";
+                StartAt = 0;
             }
         }
 
