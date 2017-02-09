@@ -13,7 +13,7 @@ type Connection =
 type LogStore =
     { name : string
       channel : string
-      connect : Func<string,string,Codec<string,DateTime option>,Connection[]> }
+      connect : string->string->Codec<string,DateTime option>->Connection[] }
 
 module EventStore =
 
@@ -46,7 +46,7 @@ module EventStore =
 
     let store = { LogStore.name="EventStore"
                   LogStore.channel="Stream"
-                  LogStore.connect=new Func<_,_,_,_>(connect) }
+                  LogStore.connect=connect }
 
 module Kafka =
 
@@ -88,7 +88,7 @@ module Kafka =
 
     let store = { LogStore.name="Kafka"
                   LogStore.channel="Topic"
-                  LogStore.connect=new Func<_,_,_,_>(connect) }
+                  LogStore.connect=connect }
 
 module Connections =
 

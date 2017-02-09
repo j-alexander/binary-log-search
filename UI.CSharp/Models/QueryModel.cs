@@ -117,10 +117,11 @@ namespace UI.Models {
 
                 var worker = new BackgroundWorker();
                 worker.DoWork += (sender, e) => {
-                    var codec = Codec.create(startAt, targetPath);
-                    var connections = store.connect(host, channel, codec);
-                    var searches = connections.Select(x => new BinaryLogSearch(x)).ToArray();
-                    e.Result = searches;
+                    //var codec = Codec.create(startAt, targetPath);
+                    //var connections = store.connect(host, channel, codec);
+                    //var searches = connections.Select(x => new BinaryLogSearch(x)).ToArray();
+                    //e.Result = searches;
+                    e.Result = new BinaryLogSearch[] { };
                 };
                 worker.RunWorkerCompleted += (sender, e) => {
                     IsConnecting = false;

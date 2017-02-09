@@ -57,21 +57,39 @@
     <None Include="App.config" />
     <Content Include="packages.config" />
     <Compile Include="AssemblyInfo.fs" />
-    <Resource Include="Views\VersionView.xaml" />
-    <Resource Include="Views\QueryView.xaml" />
-    <Resource Include="Views\SearchView.xaml" />
-    <Resource Include="Views\MainWindow.xaml" />
-    <Compile Include="Views\Views.fs" />
-    <Compile Include="Validation\DateTimeValidationRule.fs" />
+    <Compile Include="Models\VersionModel.fs" />
+    <Compile Include="Models\SearchModel.fs" />
+    <Compile Include="Models\QueryModel.fs" />
+    <Compile Include="Models\SearchesModel.fs" />
+    <Compile Include="Commands\RelayCommand.fs" />
+    <Compile Include="ViewModels\VersionViewModel.fs" />
+    <Compile Include="ViewModels\SearchViewModel.fs" />
+    <Compile Include="ViewModels\QueryViewModel.fs" />
+    <Compile Include="ViewModels\MainViewModel.fs" />
     <Compile Include="Converters\AbstractBooleanConverter.fs" />
     <Compile Include="Converters\BooleanConverter.fs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.fs" />
     <Compile Include="Converters\ListViewItemColorConverter.fs" />
     <Compile Include="Converters\SingleLineTextConverter.fs" />
+    <Compile Include="Validation\DateTimeValidationRule.fs" />
+    <Resource Include="Views\VersionView.xaml" />
+    <Resource Include="Views\QueryView.xaml" />
+    <Resource Include="Views\SearchView.xaml" />
+    <Resource Include="Views\MainWindow.xaml" />
+    <Compile Include="Views\Views.fs" />
     <Resource Include="App.xaml" />
     <Compile Include="App.fs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="EventStore.ClientAPI">
+      <HintPath>..\Libraries\EventStore.ClientAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Data">
+      <HintPath>..\Libraries\FSharp.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Data.DesignTime">
+      <HintPath>..\Libraries\FSharp.Data.DesignTime.dll</HintPath>
+    </Reference>
     <Reference Include="FsXaml.Wpf">
       <HintPath>..\packages\FsXaml.Wpf.3.1.2\lib\net45\FsXaml.Wpf.dll</HintPath>
       <Private>True</Private>
@@ -80,9 +98,36 @@
       <HintPath>..\packages\FsXaml.Wpf.3.1.2\lib\net45\FsXaml.Wpf.TypeProvider.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="kafka-net">
+      <HintPath>..\Libraries\kafka-net.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Nata.Core">
+      <HintPath>..\Libraries\Nata.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Nata.Fun.JsonPath">
+      <HintPath>..\Libraries\Nata.Fun.JsonPath.dll</HintPath>
+    </Reference>
+    <Reference Include="Nata.IO">
+      <HintPath>..\Libraries\Nata.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Nata.IO.EventStore">
+      <HintPath>..\Libraries\Nata.IO.EventStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Nata.IO.Kafka">
+      <HintPath>..\Libraries\Nata.IO.Kafka.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\Libraries\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.FSharp">
+      <HintPath>..\Libraries\NLog.FSharp.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -92,6 +137,13 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Algorithm\Algorithm.fsproj">
+      <Name>Algorithm</Name>
+      <Project>{39bd2d0f-db6a-422e-859d-7066866d25e4}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
