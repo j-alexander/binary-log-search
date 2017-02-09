@@ -10,7 +10,7 @@
     <RootNamespace>Algorithm</RootNamespace>
     <AssemblyName>Algorithm</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
+    <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Name>Algorithm</Name>
     <TargetFrameworkProfile />

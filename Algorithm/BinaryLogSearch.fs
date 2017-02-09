@@ -37,7 +37,7 @@ type BinaryLogSearch(connection:Connection) =
         let rec search (position:Position) =
 
             let range = position.UpperBound-position.LowerBound
-            if range < 1000L then
+            if range < 3000L then
                 onStatus(Scan, position)
                 scan (Position.At position.LowerBound)
                 |> Seq.tryFind (fun (dt, at) -> dt >= target)
