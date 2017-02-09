@@ -1,5 +1,4 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:local="clr-namespace:UI.Views;assembly=UI"
              xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
              xmlns:validation="clr-namespace:UI.Validation;assembly=UI">
     <Grid>

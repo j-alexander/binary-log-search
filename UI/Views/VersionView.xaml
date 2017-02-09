@@ -1,5 +1,9 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:viewModels="clr-namespace:UI.ViewModels;assembly=UI"
              xmlns:fsxaml="http://github.com/fsprojects/FsXaml">
+    <UserControl.DataContext>
+        <viewModels:VersionViewModel />
+    </UserControl.DataContext>
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
         <Label Name="Upgrade" DockPanel.Dock="Left" VerticalAlignment="Center" Visibility="{Binding Path=Model.CanUpgrade, Converter={StaticResource Visibility}}"
                Content="⚠"> <!--MouseDoubleClick="UpgradeMouseDoubleClick">-->
