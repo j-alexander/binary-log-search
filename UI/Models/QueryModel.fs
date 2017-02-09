@@ -25,7 +25,7 @@ type QueryModel() =
             "nova-retailskus-profx2",
             "$.retail_sku_product_data_updated.timestamp",
             0
-        else "", "", "", 0
+        else "", "", "$.timestamp", 0
 
     static let selectedLogStore =
         DependencyProperty.Register("SelectedLogStore", typeof<LogStore>, typeof<QueryModel>, new UIPropertyMetadata(defaultLogStore))
