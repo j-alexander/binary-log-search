@@ -45,6 +45,8 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        <GridViewColumn Header="Total" Width="75"
+                                        DisplayMemberBinding="{Binding Total}"/>
                         <GridViewColumn Header="Range" Width="75"
                                         DisplayMemberBinding="{Binding Range}"/>
                         <GridViewColumn Header="From" Width="75"

@@ -26,6 +26,8 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
         DependencyProperty.Register("Maximum", typeof<int64>, typeof<SearchModel>)
     static let range =
         DependencyProperty.Register("Range", typeof<int64>, typeof<SearchModel>)
+    static let total =
+        DependencyProperty.Register("Total", typeof<int64>, typeof<SearchModel>)
     static let queryPosition =
         DependencyProperty.Register("QueryPosition", typeof<int64>, typeof<SearchModel>)
     static let currentPosition =
@@ -64,6 +66,10 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
     member public x.Range
         with get() = x.GetValue(range) :?> int64
         and set(value:int64) = x.SetValue(range, value)
+
+    member public x.Total
+        with get() = x.GetValue(total) :?> int64
+        and set(value:int64) = x.SetValue(total, value)
 
     member public x.QueryPosition
         with get() = x.GetValue(queryPosition) :?> int64
@@ -142,6 +148,10 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
                     let range = position.UpperBound - position.LowerBound
                     if x.Range <> range then
                         x.Range <- range
+
+                    let total = position.Maximum - position.Minimum
+                    if x.Total <> total then
+                        x.Total <- total
 
                 let status = 
                     match state.Status with

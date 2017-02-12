@@ -3,7 +3,7 @@
         xmlns:views="clr-namespace:UI.Views;assembly=UI"
         xmlns:viewModels="clr-namespace:UI.ViewModels;assembly=UI"
         xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
-        Title="Binary Log Search" Height="400" Width="825">
+        Title="Binary Log Search" Height="400" Width="910">
     <Window.DataContext>
         <viewModels:MainViewModel />
     </Window.DataContext>
