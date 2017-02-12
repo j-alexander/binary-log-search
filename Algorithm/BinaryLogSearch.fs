@@ -15,31 +15,34 @@ type BinaryLogSearch(connection:Connection) =
 
     member x.Execute (token:CancellationToken,
                       state:SearchState,
-                      onStatus:Action<SearchState>) =
+                      onStatus:SearchState -> unit) =
     
         let target = state.Target
         let isCancelled _ = token.IsCancellationRequested
         let isNotCancelled = isCancelled >> not
+        
+        let onStatus(status,position) =
+            onStatus({Target=target
+                      Status=status
+                      Position=Some position})
 
-        let scan =
+        let scan (state, position) =
             connection.readFrom
+            >> Seq.mapi (fun i (event, index) ->
+                if i % 100 = 0 then
+                    onStatus(state, { position with Current = index })
+                (event, index))
             >> Seq.takeWhile isNotCancelled
             >> Seq.chooseFst Event.data
-        let seek =
-            scan
+        let seek (state, position) =
+            scan (state, position)
             >> Seq.tryHead
-
-        let onStatus(status,position) =
-            onStatus.Invoke({Target=target
-                             Status=status
-                             Position=Some position})
 
         let rec search (position:Position) =
 
             let range = position.UpperBound-position.LowerBound
             if range < 3000L then
-                onStatus(Scan, position)
-                scan (Position.At position.LowerBound)
+                scan (Scan, position) (Position.At position.LowerBound)
                 |> Seq.tryFind (fun (dt, at) -> dt >= target)
                 |> function
                    | Some(dt,at) as x ->
@@ -54,9 +57,8 @@ type BinaryLogSearch(connection:Connection) =
             else
                 let point = (range/2L)+position.LowerBound
                 let position = { position with QueryAt = point }
-                onStatus(Seek, position)
 
-                match seek (Position.At point) with
+                match seek (Seek, position) (Position.At point) with
                 | None when isCancelled() ->
                     onStatus(Cancelled,position)
                     None
