@@ -68,6 +68,16 @@
                    Guid="{d36d3d0f-6e12-4fcc-bd53-8cdf1bbe634b}">
           <File Id="FSharp.Data" Source="..\UI\bin\Release\FSharp.Data.dll"/>
         </Component>
+
+        <Component Id="CMP_FsXaml.Wpf"
+                   Guid="{6c8c79cb-a1a8-4f19-99b7-4ca775e93b36}">
+          <File Id="FsXaml.Wpf" Source="..\UI\bin\Release\FsXaml.Wpf.dll"/>
+        </Component>
+
+        <Component Id="CMP_FsXaml.Wpf.TypeProvider"
+                   Guid="{2c38aff4-c232-4985-8a8e-8d5a8b5f1630}">
+          <File Id="FsXaml.Wpf.TypeProvider" Source="..\UI\bin\Release\FsXaml.Wpf.TypeProvider.dll"/>
+        </Component>
       
         <Component Id="CMP_kafka_net"
                    Guid="{503e6a99-b824-4b14-ba67-d3fce9ef9f11}">
