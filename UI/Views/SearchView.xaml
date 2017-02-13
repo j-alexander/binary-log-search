@@ -36,7 +36,9 @@
                                 <DataTemplate>
                                     <Grid>
                                         <ProgressBar Grid.Column="0" Grid.Row="0"
-                                                     IsIndeterminate="{Binding Path=IsCancelling, Converter={StaticResource Negate}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                     Minimum="0" Maximum="100" Value="{Binding Progress}"
+                                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                     IsIndeterminate="{Binding IsStarting}"
                                                      Visibility="{Binding Path=IsExecuting, Converter={StaticResource Visibility}}"/>
                                         <TextBlock Grid.Column="0" Grid.Row="0"
                                                    Text="{Binding TargetResult, StringFormat=yyyy-MM-dd HH:mm:ss}"

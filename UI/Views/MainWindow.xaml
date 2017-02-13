@@ -8,7 +8,7 @@
         <viewModels:MainViewModel />
     </Window.DataContext>
     <DockPanel LastChildFill="True" Margin="10">
-        <views:QueryView DockPanel.Dock="Top" Height="110" DataContext="{Binding Path=QueryViewModel}"/>
+        <views:QueryView DockPanel.Dock="Top" Height="130" DataContext="{Binding Path=QueryViewModel}"/>
         <views:SearchView DataContext="{Binding Path=SearchViewModel}"/>
     </DockPanel>
 </Window>

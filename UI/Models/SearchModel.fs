@@ -28,12 +28,16 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
         DependencyProperty.Register("Range", typeof<int64>, typeof<SearchModel>)
     static let total =
         DependencyProperty.Register("Total", typeof<int64>, typeof<SearchModel>)
+    static let progress =
+        DependencyProperty.Register("Progress", typeof<int>, typeof<SearchModel>)
     static let queryPosition =
         DependencyProperty.Register("QueryPosition", typeof<int64>, typeof<SearchModel>)
     static let currentPosition =
         DependencyProperty.Register("CurrentPosition", typeof<int64>, typeof<SearchModel>)
     static let status =
         DependencyProperty.Register("Status", typeof<string>, typeof<SearchModel>)
+    static let isStarting =
+        DependencyProperty.Register("IsStarting", typeof<bool>, typeof<SearchModel>, new PropertyMetadata(true))
     static let isExecuting =
         DependencyProperty.Register("IsExecuting", typeof<bool>, typeof<SearchModel>)
     static let isCancelling =
@@ -71,6 +75,10 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
         with get() = x.GetValue(total) :?> int64
         and set(value:int64) = x.SetValue(total, value)
 
+    member public x.Progress
+        with get() = x.GetValue(progress) :?> int
+        and set(value:int) = x.SetValue(progress, value)
+
     member public x.QueryPosition
         with get() = x.GetValue(queryPosition) :?> int64
         and set(value:int64) = x.SetValue(queryPosition, value)
@@ -82,6 +90,10 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
     member public x.Status
         with get() = x.GetValue(status) :?> string
         and set(value:string) = x.SetValue(status, value)
+
+    member public x.IsStarting
+        with get() = x.GetValue(isStarting) :?> bool
+        and set(value:bool) = x.SetValue(isStarting, value)
 
     member public x.IsExecuting
         with get() = x.GetValue(isExecuting) :?> bool
@@ -153,6 +165,26 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
                     if x.Total <> total then
                         x.Total <- total
 
+                    let progress =
+                        let logarithmic =
+                            let total = Math.Log(float total, 2.)
+                            let range = Math.Log(float range, 2.)
+                            (100. * (total-range)) / total
+                        let linear =
+                            let total = float total
+                            let range = float range
+                            (100. * (total-range)) / total
+                        let progress =
+                            (linear + (2. * logarithmic)) / 3.
+                        int progress
+
+                    if x.Progress <> progress then
+                        x.Progress <- progress
+
+                    let isStarting = progress <= 0
+                    if x.IsStarting <> isStarting then
+                        x.IsStarting <- isStarting
+
                 let status = 
                     match state.Status with
                     | Idle ->
@@ -172,6 +204,7 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
                         x.QueryPosition <- index
                         x.CurrentPosition <- index
                         x.Range <- 0L
+                        x.Progress <- 100
                         "Found"
                 if x.Status <> status then
                     x.Status <- status)

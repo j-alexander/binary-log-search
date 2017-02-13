@@ -18,14 +18,14 @@ type QueryModel() =
     static let logStores = Algorithm.Connections.all
     static let defaultLogStore = Algorithm.Connections.kafka
     static let defaultTarget = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)
+    static let defaultStartScanAt = 3000L
 
-    static let defaultHost, defaultChannel, defaultTargetPath, defaultStartAt =
+    static let defaultHost, defaultChannel, defaultTargetPath =
         if Debugger.IsAttached then
             "tcp://guardians-kafka-cluster.qa.jet.com:9092",
             "nova-retailskus-profx2",
-            "$.retail_sku_product_data_updated.timestamp",
-            0
-        else "", "", "$.timestamp", 0
+            "$.retail_sku_product_data_updated.timestamp"
+        else "", "", "$.timestamp"
 
     static let selectedLogStore =
         DependencyProperty.Register("SelectedLogStore", typeof<LogStore>, typeof<QueryModel>, new UIPropertyMetadata(defaultLogStore))
@@ -33,8 +33,8 @@ type QueryModel() =
         DependencyProperty.Register("Host", typeof<string>, typeof<QueryModel>, new UIPropertyMetadata(defaultHost))
     static let channel =
         DependencyProperty.Register("Channel", typeof<string>, typeof<QueryModel>, new UIPropertyMetadata(defaultChannel))
-    static let startAt =
-        DependencyProperty.Register("StartAt", typeof<int>, typeof<QueryModel>, new UIPropertyMetadata(defaultStartAt))
+    static let startScanAt =
+        DependencyProperty.Register("StartScanAt", typeof<int64>, typeof<QueryModel>, new UIPropertyMetadata(defaultStartScanAt))
     static let target =
         DependencyProperty.Register("Target", typeof<DateTime>, typeof<QueryModel>, new UIPropertyMetadata(defaultTarget))
     static let targetPath =
@@ -61,9 +61,9 @@ type QueryModel() =
         with get() = x.GetValue(channel) :?> string
         and set(value:string) = x.SetValue(channel, value)
 
-    member public x.StartAt
-        with get() = x.GetValue(startAt) :?> int
-        and set(value:int) = x.SetValue(startAt, value)
+    member public x.StartScanAt
+        with get() = x.GetValue(startScanAt) :?> int64
+        and set(value:int64) = x.SetValue(startScanAt, value)
 
     member public x.Target
         with get() = x.GetValue(target) :?> DateTime
@@ -96,17 +96,17 @@ type QueryModel() =
             let store = x.SelectedLogStore
             let host = x.Host
             let channel = x.Channel
-            let startAt = x.StartAt
+            let startScanAt = x.StartScanAt
             let target = x.Target
             let targetPath = x.TargetPath
 
             let worker = new BackgroundWorker()
             worker.DoWork.Add(fun e -> 
-                let codec = Codec.create(startAt, targetPath)
+                let codec = Codec.create(targetPath)
                 let connections = store.connect host channel codec
                 let searches =
                     connections
-                    |> Array.map(fun x -> new BinaryLogSearch(x))
+                    |> Array.map(fun x -> new BinaryLogSearch(x, startScanAt))
                 e.Result <- searches)
             worker.RunWorkerCompleted.Add(fun e ->
                 x.IsConnecting <- false

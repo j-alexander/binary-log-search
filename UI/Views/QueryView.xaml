@@ -11,6 +11,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Host</Label>
@@ -38,13 +39,16 @@
             </TextBox>
             <TextBox MinWidth="100" VerticalAlignment="Center" Padding="1"
                      Text="{Binding Model.TargetPath, UpdateSourceTrigger=PropertyChanged}"/>
-            <Label VerticalAlignment="Center">Start At Character:</Label>
-            <TextBox MinWidth="25" VerticalAlignment="Center" Padding="1"
-                     Text="{Binding Model.StartAt, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
-        <Button Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" Margin="0 0 5 0"
+        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">Scan Range &lt;=</Label>
+        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+            <TextBox MinWidth="25" VerticalAlignment="Center" Padding="1"
+                         Text="{Binding Model.StartScanAt, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <Button Grid.Column="0" Grid.Row="4" VerticalAlignment="Bottom" Margin="0 0 5 0"
                 Command="{Binding Connect}">Query</Button>
-        <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" Margin="0 0 0 5" Text="{Binding Model.Status}"/>
+        <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Bottom" Margin="0 0 0 5" Text="{Binding Model.Status}"/>
     </Grid>
 </UserControl>

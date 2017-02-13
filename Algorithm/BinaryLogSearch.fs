@@ -5,7 +5,8 @@ open System.Threading
 open Nata.Core
 open Nata.IO
 
-type BinaryLogSearch(connection:Connection) =
+type BinaryLogSearch(connection:Connection,
+                     startScanAt:int64) =
 
     let indexOf, readFrom =
         connection.indexOf,
@@ -30,7 +31,7 @@ type BinaryLogSearch(connection:Connection) =
             connection.readFrom
             >> Seq.mapi (fun i (event, index) ->
                 if i % 100 = 0 then
-                    onStatus(state, { position with Current = index })
+                    onStatus(state, { position with Current = index; LowerBound = index })
                 (event, index))
             >> Seq.takeWhile isNotCancelled
             >> Seq.chooseFst Event.data
@@ -41,7 +42,7 @@ type BinaryLogSearch(connection:Connection) =
         let rec search (position:Position) =
 
             let range = position.UpperBound-position.LowerBound
-            if range < 3000L then
+            if range < startScanAt then
                 scan (Scan, position) (Position.At position.LowerBound)
                 |> Seq.tryFind (fun (dt, at) -> dt >= target)
                 |> function
