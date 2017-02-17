@@ -27,18 +27,17 @@
         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Padding="2"
                  Text="{Binding Model.Channel, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <ComboBox Name="TargetType" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">
-            <ComboBoxItem IsSelected="True">Timestamp</ComboBoxItem>
-            <!--<ComboBoxItem>Text</ComboBoxItem>
-            <ComboBoxItem>Number</ComboBoxItem>-->
-        </ComboBox>
+        <ComboBox Name="TargetType" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"
+                  SelectedValue="{Binding Model.TargetType}"
+                  ItemsSource="{Binding Model.TargetTypes}"/>
+
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
             <ContentControl>
                 <ContentControl.Resources>
                     <ControlTemplate x:Key="DateControl" TargetType="{x:Type ContentControl}">
                         <TextBox MinWidth="125" TextAlignment="Left" VerticalAlignment="Center" Padding="2">
                             <TextBox.Text>
-                                <Binding Path="Model.Target" UpdateSourceTrigger="PropertyChanged" StringFormat="yyyy-MM-dd HH:mm:ss">
+                                <Binding Path="Model.TargetDate" UpdateSourceTrigger="PropertyChanged" StringFormat="yyyy-MM-dd HH:mm:ss">
                                     <Binding.ValidationRules>
                                         <validation:DateTimeValidationRule/>
                                     </Binding.ValidationRules>
@@ -47,10 +46,12 @@
                         </TextBox>
                     </ControlTemplate>
                     <ControlTemplate x:Key="TextControl" TargetType="{x:Type ContentControl}">
-                        <TextBox MinWidth="125" TextAlignment="Left" VerticalAlignment="Center" Padding="2">My Text</TextBox>
+                        <TextBox MinWidth="125" TextAlignment="Left" VerticalAlignment="Center" Padding="2"
+                                 Text="{Binding Model.TargetText}"/>
                     </ControlTemplate>
                     <ControlTemplate x:Key="NumberControl" TargetType="{x:Type ContentControl}">
-                        <TextBox MinWidth="125" TextAlignment="Left" VerticalAlignment="Center" Padding="2">My Number</TextBox>
+                        <TextBox MinWidth="125" TextAlignment="Left" VerticalAlignment="Center" Padding="2"
+                                 Text="{Binding Model.TargetNumber}"/>
                     </ControlTemplate>
                 </ContentControl.Resources>
                 <ContentControl.Style>

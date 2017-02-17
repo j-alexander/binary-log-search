@@ -14,10 +14,13 @@ type QueryModel() =
     inherit DependencyObject()
 
     let searches = new ObservableCollection<SearchModel>()
-
+    
+    static let targetTypes = [| "Timestamp" |] //; "Text"; "Number" |]
     static let logStores = Algorithm.Connections.all
     static let defaultLogStore = Algorithm.Connections.kafka
-    static let defaultTarget = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)
+    static let defaultTargetDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)
+    static let defaultTargetText = ""
+    static let defaultTargetNumber = 0m
     static let defaultStartScanAt = 3000L
 
     static let defaultHost, defaultChannel, defaultTargetPath =
@@ -35,8 +38,11 @@ type QueryModel() =
         DependencyProperty.Register("Channel", typeof<string>, typeof<QueryModel>, new UIPropertyMetadata(defaultChannel))
     static let startScanAt =
         DependencyProperty.Register("StartScanAt", typeof<int64>, typeof<QueryModel>, new UIPropertyMetadata(defaultStartScanAt))
-    static let target =
-        DependencyProperty.Register("Target", typeof<DateTime>, typeof<QueryModel>, new UIPropertyMetadata(defaultTarget))
+    static let targetType, targetDate, targetText, targetNumber =
+        DependencyProperty.Register("TargetType", typeof<string>, typeof<QueryModel>, new UIPropertyMetadata(targetTypes.[0])),
+        DependencyProperty.Register("TargetDate", typeof<DateTime>, typeof<QueryModel>, new UIPropertyMetadata(defaultTargetDate)),
+        DependencyProperty.Register("TargetText", typeof<string>, typeof<QueryModel>, new UIPropertyMetadata(defaultTargetText)),
+        DependencyProperty.Register("TargetNumber", typeof<decimal>, typeof<QueryModel>, new UIPropertyMetadata(defaultTargetNumber))
     static let targetPath =
         DependencyProperty.Register("TargetPath", typeof<string>, typeof<QueryModel>, new UIPropertyMetadata(defaultTargetPath))
     static let isConnecting =
@@ -64,10 +70,22 @@ type QueryModel() =
     member public x.StartScanAt
         with get() = x.GetValue(startScanAt) :?> int64
         and set(value:int64) = x.SetValue(startScanAt, value)
+        
+    member public x.TargetType
+        with get() = x.GetValue(targetType) :?> string
+        and set(value:string) = x.SetValue(targetType, value)
 
-    member public x.Target
-        with get() = x.GetValue(target) :?> DateTime
-        and set(value:DateTime) = x.SetValue(target, value)
+    member public x.TargetDate
+        with get() = x.GetValue(targetDate) :?> DateTime
+        and set(value:DateTime) = x.SetValue(targetDate, value)
+
+    member public x.TargetText
+        with get() = x.GetValue(targetText) :?> string
+        and set(value:string) = x.SetValue(targetText, value)
+
+    member public x.TargetNumber
+        with get() = x.GetValue(targetNumber) :?> decimal
+        and set(value:decimal) = x.SetValue(targetNumber, value)
 
     member public x.TargetPath
         with get() = x.GetValue(targetPath) :?> string
@@ -86,6 +104,7 @@ type QueryModel() =
         and set(value:string) = x.SetValue(status, value)
 
     member public x.Searches = searches
+    member public x.TargetTypes = targetTypes
 
     member public x.Connect() =
         if not x.IsConnecting then
@@ -97,7 +116,7 @@ type QueryModel() =
             let host = x.Host
             let channel = x.Channel
             let startScanAt = x.StartScanAt
-            let target = x.Target
+            let target = x.TargetDate
             let targetPath = x.TargetPath
 
             let worker = new BackgroundWorker()
