@@ -66,6 +66,7 @@ type SearchViewModel(models:ObservableCollection<SearchModel>) =
                 
                 column("Name")
                 column("Result")
+                column("Total")
                 column("Range")
                 column("From")
                 column("To")
@@ -76,6 +77,7 @@ type SearchViewModel(models:ObservableCollection<SearchModel>) =
                 for search in selection do
                     column(search.LogName)
                     column(search.TargetResult)
+                    column(search.Total)
                     column(search.Range)
                     column(search.LowerBound)
                     column(search.UpperBound)
