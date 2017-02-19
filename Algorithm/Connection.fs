@@ -19,6 +19,9 @@ module EventStore =
 
     open Nata.IO.EventStore
 
+    let [<Literal>] Name = "EventStore"
+    let [<Literal>] Channel = "Stream"
+
     let connect (host:string) (stream:string) (codec:Codec<string,DateTime option>) : Connection[] =
         let settings =
             { Settings.Server = { Server.Host = host; Port = 1113 }
@@ -44,13 +47,16 @@ module EventStore =
              Connection.indexOf = indexOf
              Connection.readFrom = readFrom } |]
 
-    let store = { LogStore.name="EventStore"
-                  LogStore.channel="Stream"
+    let store = { LogStore.name=Name
+                  LogStore.channel=Channel
                   LogStore.connect=connect }
 
 module Kafka =
 
     open Nata.IO.Kafka
+
+    let [<Literal>] Name = "Kafka"
+    let [<Literal>] Channel = "Topic"
 
     let connect (host:string) (topic:string) (codec:Codec<string,DateTime option>) : Connection[] =
         let cluster = [ host ]
@@ -86,8 +92,8 @@ module Kafka =
                       Connection.readFrom = readFrom }
         |]
 
-    let store = { LogStore.name="Kafka"
-                  LogStore.channel="Topic"
+    let store = { LogStore.name=Name
+                  LogStore.channel=Channel
                   LogStore.connect=connect }
 
 module Connections =
@@ -96,4 +102,4 @@ module Connections =
     
     let eventstore = EventStore.store
 
-    let all = [| Kafka.store; EventStore.store |]
+    let all = [| kafka; eventstore |]
