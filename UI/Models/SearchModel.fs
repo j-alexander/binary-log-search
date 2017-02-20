@@ -196,7 +196,7 @@ type SearchModel(search : BinaryLogSearch, target : Target) =
                     | Cancelled ->
                         "Cancelled"
                     | NotFound ->
-                        "NotFound"
+                        "Not Found"
                     | Found (t, index) ->
                         x.TargetResult <- Some(t)
                         x.UpperBound <- index
