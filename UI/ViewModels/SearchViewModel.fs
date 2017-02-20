@@ -8,6 +8,7 @@ open System.Text
 open System.Windows
 open System.Windows.Input
 
+open Algorithm
 open UI.Commands
 open UI.Models
 
@@ -40,6 +41,13 @@ type SearchViewModel(models:ObservableCollection<SearchModel>) =
     let runAllCommand = run all
     let stopCommand = stop selected
     let stopAllCommand = stop all
+    
+    let ofTarget = 
+        function
+        | Some (Target.Timestamp x) -> x.ToString("yyyy-MM-dd HH:mm:ss")
+        | Some (Target.Text x) -> x
+        | Some (Target.Number x) -> x.ToString()
+        | None -> String.Empty
 
     let copyCommand =
         relaySelected(
@@ -76,7 +84,7 @@ type SearchViewModel(models:ObservableCollection<SearchModel>) =
                 row()
                 for search in selection do
                     column(search.LogName)
-                    column(search.TargetResult)
+                    column(search.TargetResult |> ofTarget)
                     column(search.Total)
                     column(search.Range)
                     column(search.LowerBound)
