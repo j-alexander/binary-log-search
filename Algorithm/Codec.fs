@@ -12,12 +12,12 @@ module Codec =
         >> JsonValue.tryFind path
         >> Option.map (JsonValue.toType >> toTarget), Codec.NotImplemented
         
-    let createTimestamp (path) : Codec<string,Target option> =
-        create (DateTime.toLocal >> Target.Timestamp) path
+    let createTimestamp =
+        create (DateTime.toLocal >> Target.Timestamp)
 
-    let createText (path) : Codec<string,Target option> =
-        create (string >> Target.Text) path
+    let createText =
+        create (string >> Target.Text)
 
-    let createNumber (path) : Codec<string,Target option> =
-        create (decimal >> Target.Number) path
+    let createNumber =
+        create (decimal >> Target.Number)
 
