@@ -8,12 +8,12 @@ open Nata.Core
 type Connection =
     { name : string
       indexOf : Indexer<int64>
-      readFrom : ReaderFrom<DateTime option,int64> }
+      readFrom : ReaderFrom<Target option,int64> }
 
 type LogStore =
     { name : string
       channel : string
-      connect : string->string->Codec<string,DateTime option>->Connection[] }
+      connect : string->string->Codec<string,Target option>->Connection[] }
 
 module EventStore =
 
@@ -22,7 +22,7 @@ module EventStore =
     let [<Literal>] Name = "EventStore"
     let [<Literal>] Channel = "Stream"
 
-    let connect (host:string) (stream:string) (codec:Codec<string,DateTime option>) : Connection[] =
+    let connect (host:string) (stream:string) (codec:Codec<string,Target option>) : Connection[] =
         let settings =
             { Settings.Server = { Server.Host = host; Port = 1113 }
               Settings.User = { User.Name = "admin"; Password = "changeit" }
@@ -58,7 +58,7 @@ module Kafka =
     let [<Literal>] Name = "Kafka"
     let [<Literal>] Channel = "Topic"
 
-    let connect (host:string) (topic:string) (codec:Codec<string,DateTime option>) : Connection[] =
+    let connect (host:string) (topic:string) (codec:Codec<string,Target option>) : Connection[] =
         let cluster = [ host ]
         let partitions =
             let indexOf = 

@@ -3,7 +3,7 @@
 open System
 
 type SearchState = {
-    Target : DateTime
+    Target : Target
     Status : Status
     Position : Position option
 }
@@ -23,11 +23,16 @@ and Status =
     | Seek
     | Cancelled
     | NotFound 
-    | Found of DateTime*int64
+    | Found of Target*int64
+
+and Target =
+    | Timestamp of DateTime
+    | Text of string
+    | Number of decimal
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module SearchState =
 
-    let empty = { Target=DateTime.Now
-                  Status=Idle
-                  Position=None }
+    let create target = { Target=target
+                          Status=Idle
+                          Position=None }

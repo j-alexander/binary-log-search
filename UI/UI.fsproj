@@ -71,6 +71,7 @@
     <Compile Include="Converters\BooleanToVisibilityConverter.fs" />
     <Compile Include="Converters\ListViewItemColorConverter.fs" />
     <Compile Include="Converters\SingleLineTextConverter.fs" />
+    <Compile Include="Converters\TargetOptionConverter.fs" />
     <Compile Include="Validation\DateTimeValidationRule.fs" />
     <Resource Include="Views\VersionView.xaml" />
     <Resource Include="Views\QueryView.xaml" />

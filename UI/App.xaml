@@ -12,5 +12,6 @@
             </converters:ListViewItemColorConverter.Odd>
         </converters:ListViewItemColorConverter>
         <converters:SingleLineTextConverter x:Key="SingleLine" />
+        <converters:TargetOptionConverter x:Key="TargetOption" />
     </Application.Resources>
 </Application>

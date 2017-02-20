@@ -8,14 +8,14 @@ open System.Windows.Input
 
 open Algorithm
 
-type SearchModel(search : BinaryLogSearch, target : DateTime) =
+type SearchModel(search : BinaryLogSearch, target : Target) =
     inherit DependencyObject()
 
     let cancel : Ref<unit->unit> = ref id
-    let state : Ref<SearchState> = ref { SearchState.empty with Target=target }
+    let state : Ref<SearchState> = ref (SearchState.create target)
     
     static let targetResult =
-        DependencyProperty.Register("TargetResult", typeof<Nullable<DateTime>>, typeof<SearchModel>)
+        DependencyProperty.Register("TargetResult", typeof<Option<Target>>, typeof<SearchModel>, new PropertyMetadata(Option<Target>.None))
     static let lowerBound =
         DependencyProperty.Register("LowerBound", typeof<int64>, typeof<SearchModel>)
     static let upperBound =
@@ -48,8 +48,8 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
     member public x.Target = target
 
     member public x.TargetResult
-        with get() = x.GetValue(targetResult) :?> Nullable<DateTime>
-        and set(value:Nullable<DateTime>) = x.SetValue(targetResult, value)
+        with get() = x.GetValue(targetResult) :?> Option<Target>
+        and set(value:Option<Target>) = x.SetValue(targetResult, value)
 
     member public x.LowerBound
         with get() = x.GetValue(lowerBound) :?> int64
@@ -197,8 +197,8 @@ type SearchModel(search : BinaryLogSearch, target : DateTime) =
                         "Cancelled"
                     | NotFound ->
                         "NotFound"
-                    | Found (at, index) ->
-                        x.TargetResult <- Nullable(at)
+                    | Found (t, index) ->
+                        x.TargetResult <- Some(t)
                         x.UpperBound <- index
                         x.LowerBound <- index
                         x.QueryPosition <- index

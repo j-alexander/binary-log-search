@@ -44,10 +44,10 @@ type BinaryLogSearch(connection:Connection,
             let range = position.UpperBound-position.LowerBound
             if range < startScanAt then
                 scan (Scan, position) (Position.At position.LowerBound)
-                |> Seq.tryFind (fun (dt, at) -> dt >= target)
+                |> Seq.tryFind (fun (t, at) -> t >= target)
                 |> function
-                   | Some(dt,at) as x ->
-                        onStatus(Found(dt,at),position)
+                   | Some(t,at) as x ->
+                        onStatus(Found(t,at),position)
                         x
                    | None as x ->
                         if isCancelled() then 
@@ -66,9 +66,9 @@ type BinaryLogSearch(connection:Connection,
                 | None ->
                     onStatus(NotFound,position)
                     None
-                | Some(dt, at) when dt >= target ->
+                | Some(t, at) when t >= target ->
                     search { position with UpperBound = point }
-                | Some(dt, at) ->
+                | Some(t, at) ->
                     search { position with LowerBound = point }
 
         //// start search at the start offset

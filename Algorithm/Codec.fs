@@ -7,8 +7,17 @@ module Codec =
     open Nata.Core
     open Nata.Fun.JsonPath
 
-    let create (path) : Codec<string,DateTime option> =
+    let create (toTarget) (path) : Codec<string,Target option> =
         JsonValue.Parse
         >> JsonValue.tryFind path
-        >> Option.map (JsonValue.toType >> DateTime.toLocal), Codec.NotImplemented
+        >> Option.map (JsonValue.toType >> toTarget), Codec.NotImplemented
         
+    let createTimestamp (path) : Codec<string,Target option> =
+        create (DateTime.toLocal >> Target.Timestamp) path
+
+    let createText (path) : Codec<string,Target option> =
+        create (string >> Target.Text) path
+
+    let createNumber (path) : Codec<string,Target option> =
+        create (decimal >> Target.Number) path
+

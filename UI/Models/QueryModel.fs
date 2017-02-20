@@ -15,7 +15,7 @@ type QueryModel() =
 
     let searches = new ObservableCollection<SearchModel>()
     
-    static let targetTypes = [| "Timestamp" |] //; "Text"; "Number" |]
+    static let targetTypes = [| "Timestamp"; "Text"; "Number" |]
     static let logStores = Algorithm.Connections.all
     static let defaultLogStore = Algorithm.Connections.kafka
     static let defaultTargetDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)
@@ -116,12 +116,25 @@ type QueryModel() =
             let host = x.Host
             let channel = x.Channel
             let startScanAt = x.StartScanAt
-            let target = x.TargetDate
-            let targetPath = x.TargetPath
+            
+            let codec, target =
+                match x.TargetType with
+                | "Timestamp" ->
+                    Codec.createTimestamp x.TargetPath,
+                    Target.Timestamp x.TargetDate
+                | "Text" ->
+                    Codec.createText x.TargetPath,
+                    Target.Text x.TargetText
+                | "Number" ->
+                    Codec.createNumber x.TargetPath,
+                    Target.Number x.TargetNumber
+                | x ->
+                    x
+                    |> sprintf "Unrecognized target type: %s"
+                    |> failwith
 
             let worker = new BackgroundWorker()
             worker.DoWork.Add(fun e -> 
-                let codec = Codec.create(targetPath)
                 let connections = store.connect host channel codec
                 let searches =
                     connections

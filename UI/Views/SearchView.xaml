@@ -41,7 +41,7 @@
                                                      IsIndeterminate="{Binding IsStarting}"
                                                      Visibility="{Binding Path=IsExecuting, Converter={StaticResource Visibility}}"/>
                                         <TextBlock Grid.Column="0" Grid.Row="0"
-                                                   Text="{Binding TargetResult, StringFormat=yyyy-MM-dd HH:mm:ss}"
+                                                   Text="{Binding TargetResult, Converter={StaticResource TargetOption}}"
                                                    Visibility="{Binding Path=IsExecuting, Converter={StaticResource NegateVisibility}}"/>
                                     </Grid>
                                 </DataTemplate>

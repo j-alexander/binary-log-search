@@ -81,9 +81,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="SearchState.fs" />
     <Compile Include="Codec.fs" />
     <Compile Include="Connection.fs" />
-    <Compile Include="SearchState.fs" />
     <Compile Include="BinaryLogSearch.fs" />
   </ItemGroup>
   <PropertyGroup>
