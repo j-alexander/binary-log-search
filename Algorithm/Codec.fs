@@ -4,12 +4,12 @@ module Codec =
 
     open System
     open FSharp.Data
+    open FSharp.Data.JsonPath
     open Nata.Core
-    open Nata.Fun.JsonPath
 
     let create (toTarget) (path) : Codec<string,Target option> =
         JsonValue.Parse
-        >> JsonValue.tryFind path
+        >> JsonValue.tryGet path
         >> Option.map (JsonValue.toType >> toTarget), Codec.NotImplemented
         
     let createTimestamp =

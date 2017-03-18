@@ -9,10 +9,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>UI</RootNamespace>
     <AssemblyName>UI</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <Name>UI</Name>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -83,13 +84,20 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EventStore.ClientAPI">
-      <HintPath>..\Libraries\EventStore.ClientAPI.dll</HintPath>
+      <HintPath>..\packages\EventStore.Client.3.9.4\lib\net40\EventStore.ClientAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FSharp.Control.AsyncSeq">
+      <HintPath>..\packages\FSharp.Control.AsyncSeq.2.0.11\lib\net45\FSharp.Control.AsyncSeq.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Data">
-      <HintPath>..\Libraries\FSharp.Data.dll</HintPath>
+      <HintPath>..\packages\FSharp.Data.2.3.2\lib\net40\FSharp.Data.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="FSharp.Data.DesignTime">
-      <HintPath>..\Libraries\FSharp.Data.DesignTime.dll</HintPath>
+    <Reference Include="FSharp.Data.JsonPath">
+      <HintPath>..\packages\FSharp.Data.JsonPath.1.0.0\lib\net40\FSharp.Data.JsonPath.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="FsXaml.Wpf">
       <HintPath>..\packages\FsXaml.Wpf.3.1.2\lib\net45\FsXaml.Wpf.dll</HintPath>
@@ -100,43 +108,61 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="kafka-net">
-      <HintPath>..\Libraries\kafka-net.dll</HintPath>
+      <HintPath>..\packages\kafka-net.0.9.0.65\lib\net45\kafka-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Kafunk">
+      <HintPath>..\packages\Kafunk.0.0.35-alpha001\lib\net45\Kafunk.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
     </Reference>
     <Reference Include="Nata.Core">
-      <HintPath>..\Libraries\Nata.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Nata.Fun.JsonPath">
-      <HintPath>..\Libraries\Nata.Fun.JsonPath.dll</HintPath>
+      <HintPath>..\packages\Nata.Core.1.0.0.0\lib\net461\Nata.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Nata.IO">
-      <HintPath>..\Libraries\Nata.IO.dll</HintPath>
+      <HintPath>..\packages\Nata.IO.1.0.0.0\lib\net461\Nata.IO.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Nata.IO.EventStore">
-      <HintPath>..\Libraries\Nata.IO.EventStore.dll</HintPath>
+      <HintPath>..\packages\Nata.IO.EventStore.1.0.0.0\lib\net461\Nata.IO.EventStore.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Nata.IO.Kafka">
-      <HintPath>..\Libraries\Nata.IO.Kafka.dll</HintPath>
+    <Reference Include="Nata.IO.KafkaNet">
+      <HintPath>..\packages\Nata.IO.KafkaNet.1.0.0.0\lib\net461\Nata.IO.KafkaNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nata.IO.Kafunk">
+      <HintPath>..\packages\Nata.IO.Kafunk.1.0.0.0\lib\net461\Nata.IO.Kafunk.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Libraries\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NLog">
-      <HintPath>..\Libraries\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.4\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NLog.FSharp">
-      <HintPath>..\Libraries\NLog.FSharp.dll</HintPath>
+      <HintPath>..\packages\NLog.FSharp.4.2.3\lib\net40\NLog.FSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="protobuf-net">
+      <HintPath>..\packages\protobuf-net.2.1.0\lib\net451\protobuf-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>

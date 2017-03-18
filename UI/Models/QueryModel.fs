@@ -17,7 +17,7 @@ type QueryModel() =
     
     static let targetTypes = [| "Timestamp"; "Text"; "Number" |]
     static let logStores = Algorithm.Connections.all
-    static let defaultLogStore = Algorithm.Connections.kafka
+    static let defaultLogStore = Algorithm.Connections.kafkanet
     static let defaultTargetDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)
     static let defaultTargetText = ""
     static let defaultTargetNumber = 0m
