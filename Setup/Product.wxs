@@ -68,6 +68,11 @@
                    Guid="{d36d3d0f-6e12-4fcc-bd53-8cdf1bbe634b}">
           <File Id="FSharp.Data" Source="..\UI\bin\Release\FSharp.Data.dll"/>
         </Component>
+      
+        <Component Id="CMP_FSharp_Control_AsyncSeq"
+                   Guid="{e21d3d0f-6e12-4fcc-bd53-8cdf1bbe632b}">
+          <File Id="FSharp.Control.AsyncSeq" Source="..\UI\bin\Release\FSharp.Control.AsyncSeq.dll"/>
+        </Component>
 
         <Component Id="CMP_FsXaml.Wpf"
                    Guid="{6c8c79cb-a1a8-4f19-99b7-4ca775e93b36}">
@@ -84,14 +89,19 @@
           <File Id="kafka_net" Source="..\UI\bin\Release\kafka-net.dll"/>
         </Component>
       
+        <Component Id="CMP_kafunk"
+                   Guid="{403e6a99-b824-4b14-ba67-d3fce8ef9f21}">
+          <File Id="kafunk" Source="..\UI\bin\Release\kafunk.dll"/>
+        </Component>
+      
         <Component Id="CMP_Nata.Core"
                    Guid="{7cbd16aa-5ea6-447a-a4d0-85d97d2bbd7d}">
           <File Id="Nata.Core" Source="..\UI\bin\Release\Nata.Core.dll"/>
         </Component>
       
-        <Component Id="CMP_Nata.Fun.JsonPath"
+        <Component Id="CMP_FSharp.Data.JsonPath"
                    Guid="{2fbfb7a7-b7b5-4841-bc97-c62d251b813b}">
-          <File Id="Nata.Fun.JsonPath" Source="..\UI\bin\Release\Nata.Fun.JsonPath.dll"/>
+          <File Id="FSharp.Data.JsonPath" Source="..\UI\bin\Release\FSharp.Data.JsonPath.dll"/>
         </Component>
       
         <Component Id="CMP_Nata.IO"
@@ -104,9 +114,14 @@
           <File Id="Nata.IO.EventStore" Source="..\UI\bin\Release\Nata.IO.EventStore.dll"/>
         </Component>
       
-        <Component Id="CMP_Nata.IO.Kafka"
+        <Component Id="CMP_Nata.IO.KafkaNet"
                    Guid="{c09ed05b-16ee-4b9d-8d99-05374dab17a6}">
-          <File Id="Nata.IO.Kafka" Source="..\UI\bin\Release\Nata.IO.Kafka.dll"/>
+          <File Id="Nata.IO.Kafka" Source="..\UI\bin\Release\Nata.IO.KafkaNet.dll"/>
+        </Component>
+
+        <Component Id="CMP_Nata.IO.Kafunk"
+                   Guid="{108ed05b-12ee-4b9d-8d99-05374dcb17a6}">
+          <File Id="Nata.IO.Kafunk" Source="..\UI\bin\Release\Nata.IO.Kafunk.dll"/>
         </Component>
       
         <Component Id="CMP_Newtonsoft.Json"

@@ -5,7 +5,7 @@ open System.Threading
 open Nata.Core
 open Nata.IO
 
-type BinaryLogSearch(connection:Connection,
+type BinaryLogSearch(connection:LogConnection,
                      startScanAt:int64) =
 
     let indexOf, readFrom =

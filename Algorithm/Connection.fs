@@ -5,7 +5,7 @@ open Nata.IO
 open Nata.IO.Capability
 open Nata.Core
 
-type Connection =
+type LogConnection =
     { name : string
       indexOf : Indexer<int64>
       readFrom : ReaderFrom<Target option,int64> }
@@ -13,7 +13,7 @@ type Connection =
 type LogStore =
     { name : string
       channel : string
-      connect : string->string->Codec<string,Target option>->Connection[] }
+      connect : string->string->Codec<string,Target option>->LogConnection[] }
 
 module EventStore =
 
@@ -22,7 +22,7 @@ module EventStore =
     let [<Literal>] Name = "EventStore"
     let [<Literal>] Channel = "Stream"
 
-    let connect (host:string) (stream:string) (codec:Codec<string,Target option>) : Connection[] =
+    let connect (host:string) (stream:string) (codec:Codec<string,Target option>) : LogConnection[] =
         let settings =
             { Settings.Server = { Server.Host = host; Port = 1113 }
               Settings.User = { User.Name = "admin"; Password = "changeit" }
@@ -43,22 +43,22 @@ module EventStore =
             stream |> indexer,
             stream |> readerFrom
 
-        [| { Connection.name = stream
-             Connection.indexOf = indexOf
-             Connection.readFrom = readFrom } |]
+        [| { name = stream
+             indexOf = indexOf
+             readFrom = readFrom } |]
 
     let store = { LogStore.name=Name
                   LogStore.channel=Channel
                   LogStore.connect=connect }
 
-module Kafka =
+module KafkaNet =
 
-    open Nata.IO.Kafka
+    open Nata.IO.KafkaNet
 
-    let [<Literal>] Name = "Kafka"
+    let [<Literal>] Name = "KafkaNet"
     let [<Literal>] Channel = "Topic"
 
-    let connect (host:string) (topic:string) (codec:Codec<string,Target option>) : Connection[] =
+    let connect (host:string) (topic:string) (codec:Codec<string,Target option>) : LogConnection[] =
         let cluster = [ host ]
         let partitions =
             let indexOf = 
@@ -87,9 +87,54 @@ module Kafka =
                     partition |> readerFrom
 
                 yield
-                    { Connection.name = name
-                      Connection.indexOf = indexOf
-                      Connection.readFrom = readFrom }
+                    { name = name
+                      indexOf = indexOf
+                      readFrom = readFrom }
+        |]
+
+    let store = { LogStore.name=Name
+                  LogStore.channel=Channel
+                  LogStore.connect=connect }
+
+module Kafunk =
+
+    open Nata.IO.Kafunk
+
+    let [<Literal>] Name = "Kafunk"
+    let [<Literal>] Channel = "Topic"
+
+    let connect (host:string) (topic:string) (codec:Codec<string,Target option>) : LogConnection[] =
+        let cluster = Kafunk.Connection.create { Settings.defaultSettings with Hosts=[ host ] }
+        let partitions =
+            let indexOf = 
+                Topic.connect cluster topic
+                |> indexer
+            indexOf Position.Start
+            |> Offsets.partitions
+                
+        [|
+            for partition in partitions do
+                let partitionFor =
+                    let dataCodec =
+                        Codec.BytesToString
+                        |> Codec.concatenate codec
+                    let indexCodec =
+                        Offset.Codec.OffsetToInt64 partition
+                    TopicPartition.connect cluster
+                    |> Source.mapData dataCodec
+                    |> Source.mapIndex indexCodec
+                    
+                let name = sprintf "%s/%d" topic partition
+                let indexOf, readFrom =
+                    let partition =
+                        partitionFor (topic,partition)
+                    partition |> indexer,
+                    partition |> readerFrom
+
+                yield
+                    { name = name
+                      indexOf = indexOf
+                      readFrom = readFrom }
         |]
 
     let store = { LogStore.name=Name
@@ -98,8 +143,8 @@ module Kafka =
 
 module Connections =
 
-    let kafka = Kafka.store
-    
+    let kafkanet = KafkaNet.store
+    let kafunk = Kafunk.store
     let eventstore = EventStore.store
 
-    let all = [| kafka; eventstore |]
+    let all = [| kafkanet; kafunk; eventstore |]
