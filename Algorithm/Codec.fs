@@ -9,7 +9,7 @@ module Codec =
 
     let create (toTarget) (path) : Codec<string,Target option> =
         JsonValue.Parse
-        >> JsonValue.tryGet path
+        >> JsonPath.tryFind path
         >> Option.map (JsonValue.toType >> toTarget), Codec.NotImplemented
         
     let createTimestamp =
