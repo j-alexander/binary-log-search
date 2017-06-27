@@ -2,7 +2,7 @@
 
 open System
 open Nata.IO
-open Nata.IO.Capability
+open Nata.IO.Channel
 open Nata.Core
 
 type LogConnection =
@@ -35,7 +35,6 @@ module EventStore =
             settings
             |> Stream.connect
             |> Source.mapData dataCodec
-            |> Source.mapIndex (int64, int)
         
         let indexOf, readFrom =
             let stream =

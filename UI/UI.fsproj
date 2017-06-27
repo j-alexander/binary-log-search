@@ -84,15 +84,15 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EventStore.ClientAPI">
-      <HintPath>..\packages\EventStore.Client.3.9.4\lib\net40\EventStore.ClientAPI.dll</HintPath>
+      <HintPath>..\packages\EventStore.Client.4.0.0\lib\net40\EventStore.ClientAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Control.AsyncSeq">
-      <HintPath>..\packages\FSharp.Control.AsyncSeq.2.0.11\lib\net45\FSharp.Control.AsyncSeq.dll</HintPath>
+      <HintPath>..\packages\FSharp.Control.AsyncSeq.2.0.12\lib\net45\FSharp.Control.AsyncSeq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Data">
-      <HintPath>..\packages\FSharp.Data.2.3.2\lib\net40\FSharp.Data.dll</HintPath>
+      <HintPath>..\packages\FSharp.Data.2.3.3\lib\net40\FSharp.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Data.JsonPath">
@@ -100,11 +100,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FsXaml.Wpf">
-      <HintPath>..\packages\FsXaml.Wpf.3.1.2\lib\net45\FsXaml.Wpf.dll</HintPath>
+      <HintPath>..\packages\FsXaml.Wpf.3.1.6\lib\net45\FsXaml.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FsXaml.Wpf.TypeProvider">
-      <HintPath>..\packages\FsXaml.Wpf.3.1.2\lib\net45\FsXaml.Wpf.TypeProvider.dll</HintPath>
+      <HintPath>..\packages\FsXaml.Wpf.3.1.6\lib\net45\FsXaml.Wpf.TypeProvider.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="kafka-net">
@@ -112,7 +112,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Kafunk">
-      <HintPath>..\packages\Kafunk.0.0.35-alpha001\lib\net45\Kafunk.dll</HintPath>
+      <HintPath>..\packages\Kafunk.0.1.0\lib\net45\Kafunk.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mscorlib" />
@@ -120,31 +120,31 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Nata.Core">
-      <HintPath>..\packages\Nata.Core.1.0.0.0\lib\net461\Nata.Core.dll</HintPath>
+      <HintPath>..\packages\Nata.Core.1.0.2.0\lib\net461\Nata.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nata.IO">
-      <HintPath>..\packages\Nata.IO.1.0.0.0\lib\net461\Nata.IO.dll</HintPath>
+      <HintPath>..\packages\Nata.IO.1.0.2.0\lib\net461\Nata.IO.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nata.IO.EventStore">
-      <HintPath>..\packages\Nata.IO.EventStore.1.0.0.0\lib\net461\Nata.IO.EventStore.dll</HintPath>
+      <HintPath>..\packages\Nata.IO.EventStore.1.0.2.0\lib\net461\Nata.IO.EventStore.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nata.IO.KafkaNet">
-      <HintPath>..\packages\Nata.IO.KafkaNet.1.0.0.0\lib\net461\Nata.IO.KafkaNet.dll</HintPath>
+      <HintPath>..\packages\Nata.IO.KafkaNet.1.0.2.0\lib\net461\Nata.IO.KafkaNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nata.IO.Kafunk">
-      <HintPath>..\packages\Nata.IO.Kafunk.1.0.0.0\lib\net461\Nata.IO.Kafunk.dll</HintPath>
+      <HintPath>..\packages\Nata.IO.Kafunk.1.0.2.0\lib\net461\Nata.IO.Kafunk.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog">
-      <HintPath>..\packages\NLog.4.4.4\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.11\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog.FSharp">
@@ -154,7 +154,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="protobuf-net">
-      <HintPath>..\packages\protobuf-net.2.1.0\lib\net451\protobuf-net.dll</HintPath>
+      <HintPath>..\packages\protobuf-net.2.2.1\lib\net40\protobuf-net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
