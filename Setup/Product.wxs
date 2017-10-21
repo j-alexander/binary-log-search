@@ -138,6 +138,21 @@
                    Guid="{4e769456-1f10-43b5-9d61-35ec25fd928d}">
           <File Id="NLog.FSharp" Source="..\UI\bin\Release\NLog.FSharp.dll"/>
         </Component>
+      
+        <Component Id="CMP_protobuf-net"
+                   Guid="{f2b7bbc6-15bd-40a6-a4d5-36bbeb62b8ea}">
+          <File Id="protobuf-net" Source="..\UI\bin\Release\protobuf-net.dll"/>
+        </Component>
+      
+        <Component Id="CMP_Snappy.NET"
+                   Guid="{e9425dc9-a064-4aab-8f61-fc643dbc1ee9}">
+          <File Id="Snappy.NET" Source="..\UI\bin\Release\Snappy.NET.dll"/>
+        </Component>
+      
+        <Component Id="CMP_Crc32C.NET"
+                   Guid="{2d5d9bc5-9aab-4438-9c5e-52aea7afb362}">
+          <File Id="Crc32C.NET" Source="..\UI\bin\Release\Crc32C.NET.dll"/>
+        </Component>
 		</ComponentGroup>
 	</Fragment>
 </Wix>
