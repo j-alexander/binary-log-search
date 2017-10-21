@@ -1,0 +1,20 @@
+source https://jet.myget.org/F/jenkins/auth/171ef4d0-bb9b-4332-b54b-0f255e105e48
+source https://api.nuget.org/v3/index.json
+
+nuget FSharp.Core
+nuget EventStore.Client 4.0.0 restriction: >= net461
+nuget FSharp.Control.AsyncSeq 2.0.12 restriction: >= net461
+nuget FSharp.Data 2.3.3 restriction: >= net461
+nuget FSharp.Data.JsonPath 1.0.0 restriction: >= net461
+nuget FsXaml.Wpf 3.1.6 restriction: >= net461
+nuget kafka-net 0.9.0.65 restriction: >= net461
+nuget Kafunk 0.1.0 restriction: >= net461
+nuget Nata.Core 1.0.2.0 restriction: >= net461
+nuget Nata.IO 1.0.2.0 restriction: >= net461
+nuget Nata.IO.EventStore 1.0.2.0 restriction: >= net461
+nuget Nata.IO.KafkaNet 1.0.2.0 restriction: >= net461
+nuget Nata.IO.Kafunk 1.0.2.0 restriction: >= net461
+nuget Newtonsoft.Json 10.0.3 restriction: >= net461
+nuget NLog 4.4.11 restriction: >= net461
+nuget NLog.FSharp 4.2.3 restriction: >= net461
+nuget protobuf-net 2.2.1 restriction: >= net461

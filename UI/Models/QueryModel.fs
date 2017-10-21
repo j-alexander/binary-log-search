@@ -25,7 +25,7 @@ type QueryModel() =
 
     static let defaultHost, defaultChannel, defaultTargetPath =
         if Debugger.IsAttached then
-            "tcp://guardians-kafka-cluster.qa.jet.com:9092",
+            "tcp://shared.kafka.eastus2.qa.jet.network:9092",
             "nova-retailskus-profx2",
             "$.retail_sku_product_data_updated.timestamp"
         else "", "", "$.timestamp"

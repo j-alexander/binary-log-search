@@ -1,0 +1,16 @@
+EventStore.Client
+FSharp.Control.AsyncSeq
+FSharp.Data
+FSharp.Data.JsonPath
+kafka-net
+Kafunk
+Nata.Core
+Nata.IO
+Nata.IO.EventStore
+Nata.IO.KafkaNet
+Nata.IO.Kafunk
+Newtonsoft.Json
+NLog
+NLog.FSharp
+protobuf-net
+FSharp.Core

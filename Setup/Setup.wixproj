@@ -29,6 +29,7 @@
       <Output TaskParameter="Assemblies" ItemName="AssemblyVersion" />
     </GetAssemblyIdentity>
     <Copy SourceFiles=".\bin\$(Configuration)\$(OutputName).msi" DestinationFiles="$(SolutionDir)\$(OutputName).msi" />
-	<WriteLinesToFile File="$(SolutionDir)\$(OutputName).version" Lines="%(AssemblyVersion.Version)" Overwrite="true" Encoding="UTF-8" />
+    <WriteLinesToFile File="$(SolutionDir)\$(OutputName).version" Lines="%(AssemblyVersion.Version)" Overwrite="true" Encoding="UTF-8" />
   </Target>
+  <Import Project="..\.paket\paket.targets" />
 </Project>
