@@ -139,9 +139,9 @@
           <File Id="NLog.FSharp" Source="..\UI\bin\Release\NLog.FSharp.dll"/>
         </Component>
       
-        <Component Id="CMP_protobuf-net"
+        <Component Id="CMP_protobuf_net"
                    Guid="{f2b7bbc6-15bd-40a6-a4d5-36bbeb62b8ea}">
-          <File Id="protobuf-net" Source="..\UI\bin\Release\protobuf-net.dll"/>
+          <File Id="protobuf_net" Source="..\UI\bin\Release\protobuf-net.dll"/>
         </Component>
       
         <Component Id="CMP_Snappy.NET"
