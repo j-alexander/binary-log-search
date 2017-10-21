@@ -81,7 +81,7 @@ type BinaryLogSearch(connection:LogConnection,
 
         //// start search at the start offset
         state.Position
-        |> Option.getValueOrYield(fun () ->
+        |> Option.defaultWith(fun () ->
             let lower = indexOf Position.Start
             let upper = indexOf Position.End
             { Position.Current = lower
